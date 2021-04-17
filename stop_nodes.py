@@ -11,13 +11,8 @@ project = Project(name="routing", connector=gns3_server)
 
 project.get()
 
-vqfx = [node.name for node in project.nodes if node.name.startswith("vqfx")]
-
-csr = [node.name for node in project.nodes if node.name.startswith("csr")]
-
-freebsd = [node.name for node in project.nodes if node.name.startswith("core")]
-
-nodes = vqfx + csr + freebsd
+nodes = [node.name for node in project.nodes if node.node_type == "qemu"]
+print(f"Stopping the following nodes \n {nodes}")
 
 for node in project.nodes:
     if node.name in nodes:
