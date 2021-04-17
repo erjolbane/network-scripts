@@ -1,0 +1,36 @@
+project: junos-telemetry
+start_all_nodes: no
+
+nodes:
+  - name: gns3-server
+    template: Cloud
+    state: active
+  - name: sw1
+    template: Ethernet switch
+    state: active
+  - name: vmx1
+    template: Juniper vMX vCP 18.2R1.9
+    state: active
+  - name: vmx1-fp
+    template: Juniper vMX vFP 18.2R1.9-KVM
+    state: active
+  - name: vqfx1-tm
+    template: Juniper vQFX RE 20.2R1
+    state: active
+  - name: vqfx1-pfe
+    template: Juniper vQFX PFE 20.2R1
+    state: active
+
+links:
+  - a_node: gns3-server
+    a_port: virbr0
+    b_node: sw1
+    b_port: Ethernet0
+  - a_node: sw1
+    a_port: Ethernet1
+    b_node: vmx1
+    b_port: fxp0
+  - a_node: vmx1
+    a_port: em1
+    b_node: vmx1-fp
+    b_port: Eth1

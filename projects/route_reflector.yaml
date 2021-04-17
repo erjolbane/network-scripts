@@ -1,0 +1,55 @@
+project: route_reflector
+start_all_nodes: no
+
+nodes:
+  - name: wan
+    template: WAN
+    state: active
+  - name: sw1
+    template: Ethernet switch
+    state: active
+  - name: vqfx1
+    template: Juniper vQFX RE 20.2R1
+    state: active
+  - name: vqfx2
+    template: Juniper vQFX RE 20.2R1
+    state: active
+  - name: vqfx3
+    template: Juniper vQFX RE 20.2R1
+    state: active
+  - name: vqfx4
+    template: Juniper vQFX RE 20.2R1
+    state: active
+  - name: vqfx5
+    template: Juniper vQFX RE 20.2R1
+    state: active
+
+links:
+  - a_node: wan
+    a_port: virbr0
+    b_node: sw1
+    b_port: Ethernet0
+  - a_node: sw1
+    a_port: Ethernet1
+    b_node: rtr1
+    b_port: em0
+  - a_node: sw1
+    a_port: Ethernet2
+    b_node: rtr2
+    b_port: em0
+  - a_node: sw1
+    a_port: Ethernet3
+    b_node: rtr3
+    b_port: em0
+  - a_node: rtr1
+    a_port: em3
+    b_node: rtr2
+    b_port: em3
+  - a_node: rtr1
+    a_port: em5
+    b_node: rtr3
+    b_port: em3
+  - a_node: rtr2
+    a_port: em5
+    b_node: rtr3
+    b_port: em5
