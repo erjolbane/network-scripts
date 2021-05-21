@@ -15,9 +15,8 @@ def delete_node(project, node):
 def main():
     # script arguments
     p = argparse.ArgumentParser()
-    p.add_argument("--config", help="Provide configuration file")
-    p.add_argument("--server", help="Provide the gns3-server url")
-    p.add_argument("--rm-node", help="Delete node")
+    p.add_argument("--config", help="Configuration file")
+    p.add_argument("--server", help="Provide GNS3 server API")
 
     args = p.parse_args()
 
