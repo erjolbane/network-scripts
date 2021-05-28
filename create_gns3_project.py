@@ -60,6 +60,10 @@ def main():
             if "em0" in node.ports[0]["name"]:
                 print(f'dhcp-host={node.ports[0]["mac_address"]},{node.name}')
 
+        if config["start_all_nodes"]:
+            project.start_nodes()
+            print("Nodes have been started.")
+
     elif args.create_links:
     # iterate over the links and create them
         for link in config["links"]:
@@ -69,10 +73,6 @@ def main():
                 )
             except ValueError as error:
                 print(error)
-
-    if config["start_all_nodes"]:
-        project.start_nodes()
-        print("Nodes started.")
 
 
 if __name__ == "__main__":
