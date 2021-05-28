@@ -1,0 +1,31 @@
+project: freebsd-carp
+start_all_nodes: yes
+
+nodes:
+  - name: wan
+    template: WAN
+    state: active
+  - name: sw1
+    template: Ethernet switch
+    state: active
+  - name: vpn1
+    template: FreeBSD-12.2
+    state: active
+  - name: vpn2
+    template: FreeBSD-12.2
+    state: active
+
+
+links:
+  - a_node: wan
+    a_port: virbr0
+    b_node: sw1
+    b_port: Ethernet0
+  - a_node: sw1
+    a_port: Ethernet1
+    b_node: vpn1
+    b_port: vtnet0
+  - a_node: sw1
+    a_port: Ethernet2
+    b_node: vpn2
+    b_port: vtnet0
